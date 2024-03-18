@@ -29,19 +29,33 @@ void liberarTFecha(TFecha &fecha) {
 void imprimirTFecha(TFecha fecha) {
     /************ Parte 3.5 ************/
     /*Escriba el código a continuación */
-
-
+    printf("%d/%d/%d\n",fecha->dia,fecha->mes,fecha->anio);
     /****** Fin de parte Parte 3.5 *****/
 }
 
 /************ Parte 3.9 ************/
 /*Escriba el código a continuación */
+nat diasMes(nat mes, nat anio) {
+    nat dias[]={31,28,31,30,31,30,31,31,30,31,30,31};
+    if ((anio%4==0)&&(anio%100!=0)){
+        dias[1]=29;
+    }
+    return dias[mes-1];
+}
 /*Recuerde que las funciones auxiliares
   deben declararse antes de ser utilizadas*/
 
 
 void aumentarTFecha(TFecha &fecha, nat dias) {
-
+    fecha->dia += dias;
+    while (fecha->dia > diasMes(fecha->mes, fecha->anio)) {
+        fecha->dia -= diasMes(fecha->mes, fecha->anio);
+        fecha->mes++;
+        if (fecha->mes > 12) {
+            fecha->mes = 1;
+            fecha->anio++;
+        }
+    }    
 }
 
 /****** Fin de parte Parte 3.9 *****/
