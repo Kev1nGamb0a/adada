@@ -64,8 +64,31 @@ int compararTFechas(TFecha fecha1, TFecha fecha2) {
     int res = 0;
     /************ Parte 3.10 ************/
     /*Escriba el código a continuación */
-
-
+    if (fecha1->anio > fecha2->anio){
+        res = 1;
+    }else {
+        if (fecha1->anio < fecha2->anio){
+            res= -1;
+        }else{
+            if (fecha1->mes > fecha2->mes){
+                res=1;
+            }else{
+                if (fecha1->mes < fecha2->mes){
+                    res=-1;
+                }else {
+                    if (fecha1->dia > fecha2->dia){
+                        res=1;
+                    }else {
+                        if (fecha1->dia < fecha2->dia){
+                            res=-1;
+                        }else{
+                            res=0;
+                        }
+                    }
+                }
+            }
+        }
+    }
     /****** Fin de parte Parte 3.10 *****/
     return res;
 }
