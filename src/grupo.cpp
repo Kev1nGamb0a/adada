@@ -27,21 +27,22 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
     /************ Parte 5.2 ************/
     /*Escriba el código a continuación */
     int i = 0;
-
-    if (grupo -> tope == 0){
-        grupo -> grupo[i] = persona;
-        grupo -> tope++;
-    }else{while (i<= grupo -> tope){
-            if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
-                i++;
+    if (grupo -> tope < MAX_PERSONAS){
+        if (grupo -> tope == 0){
+            grupo -> grupo[i] = persona;
+            grupo -> tope++;
+        }else{while (i<= grupo -> tope){
+                if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
+                    i++;
+                }
+            }          
+            for (int j = grupo -> tope ;j>i;j--){
+                grupo -> grupo [j] = grupo -> grupo[j-1];   
             }
-        }       
-        for (int j = grupo -> tope ;j>i;j--){
-            grupo -> grupo [j] = grupo -> grupo[j-1];   
+            grupo -> grupo [i] = persona;
+            grupo -> tope++;
         }
-        grupo -> grupo [i] = persona;
-        grupo -> tope++;
-    }
+    }    
 
     
 
