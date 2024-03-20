@@ -27,24 +27,20 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
     /************ Parte 5.2 ************/
     /*Escriba el código a continuación */
     int i = 0;
-    TPersona aux1, aux2 ;
+
     if (grupo -> tope == 0){
         grupo -> grupo[i] = persona;
         grupo -> tope++;
     }else{while (i<= grupo -> tope){
-            if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) <= 0){
-                aux1 = grupo -> grupo[i];
-                for (i;i<= grupo -> tope;i++){
-                    aux2 = grupo -> grupo [i+1];
-                    grupo -> grupo [i+1] = aux1;
-                    grupo -> grupo [i] = aux2 
-                    
-                }
-
-            }else {
-                i=i++;
+            if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
+                i++;
             }
+        }       
+        for (int j = grupo -> tope ;j>i;j--){
+            grupo -> grupo [j] = grupo -> grupo[j-1];   
         }
+        grupo -> grupo [i] = persona;
+        grupo -> tope++;
     }
 
     
@@ -59,7 +55,9 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
 void imprimirTGrupo(TGrupo grupo){
     /************ Parte 5.2 ************/
     /*Escriba el código a continuación */
-
+    for(int i=0; i <= grupo -> tope-1 ;i++){
+        imprimirTPersona(grupo -> grupo [i]);
+    }
     /****** Fin de parte Parte 5.2 *****/
 }
 
@@ -69,7 +67,11 @@ void imprimirTGrupo(TGrupo grupo){
 void liberarTGrupo(TGrupo& grupo){
    /************ Parte 5.2 ************/
     /*Escriba el código a continuación */
-
+    for(int i=0; i<= grupo -> tope-1 ; i++){
+        liberarTPersona(grupo -> grupo[i]);
+    }
+    delete grupo;
+    grupo = NULL;
     /****** Fin de parte Parte 5.2 *****/
 }
 
