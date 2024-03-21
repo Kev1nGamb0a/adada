@@ -126,7 +126,7 @@ bool hayPersonasFecha(TGrupo grupo, TFecha fecha){
     while (j <= i){
         int mitad = (j+ i) / 2;
         if (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]),fecha) == 0){
-            hay;
+            hay = true;
             break;
         }else
             //Si la fecha ubicada en la mitad es mas grende que la fecha que nos proporciona la funcion, covierte el tope en mitad -1 porque mitad ya se comparo
