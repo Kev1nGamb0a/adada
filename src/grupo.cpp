@@ -31,12 +31,13 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
         if (grupo -> tope == 0){
             grupo -> grupo[i] = persona;
             grupo -> tope++;
-        }else{while (i<= grupo -> tope){
+        }else{
+            while (i< grupo -> tope){
                 if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
                     i++;
                 }
             }          
-            for (int j = grupo -> tope ;j>i;j--){
+            for (int j = grupo -> tope ; j>i ;j--){
                 grupo -> grupo [j] = grupo -> grupo[j-1];   
             }
             grupo -> grupo [i] = persona;
@@ -68,7 +69,7 @@ void imprimirTGrupo(TGrupo grupo){
 void liberarTGrupo(TGrupo& grupo){
    /************ Parte 5.2 ************/
     /*Escriba el código a continuación */
-    for(int i=0; i<= grupo -> tope-1 ; i++){
+    for(int i=0; i<= grupo -> tope -1 ; i++){
         liberarTPersona(grupo -> grupo[i]);
     }
     delete grupo;
@@ -82,7 +83,11 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
     bool esta = false;
 	/************ Parte 5.3 ************/
     /*Escriba el código a continuación */
-
+    int j = 0;
+    while ((j<= grupo -> tope -1) && !esta){
+        esta = (cedula == cedulaTPersona(grupo -> grupo[j]));
+        j++;
+    }
     /****** Fin de parte Parte 5.3 *****/
 	return esta;
 }
@@ -91,7 +96,17 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 void removerDeGrupo(TGrupo &grupo, int cedula){
     /************ Parte 5.4 ************/
     /*Escriba el código a continuación */
-
+    if (estaEnGrupo(grupo, cedula)){
+        int j = 0;
+        while (j <= grupo -> tope-1){
+            if (cedula == cedulaTPersona(grupo -> grupo[j])){
+                liberarTPersona(grupo -> grupo[j]);
+                for (int i=j; i < grupo -> tope; i++){
+                    grupo -> grupo[i] = grupo -> grupo[i+1];
+                }grupo -> tope--;
+            }j++;
+        }
+    }
     /****** Fin de parte Parte 5.4 *****/   
 }
 
@@ -101,6 +116,27 @@ bool hayPersonasFecha(TGrupo grupo, TFecha fecha){
     bool hay = false;
     /************ Parte 5.5 ************/
     /*Escriba el código a continuación */
+    //Variables auxiliares que me ayudaran a recorrer el arreglo
+    int j = 0;
+    int i = grupo -> tope;
+    //Contempla el caso de que exista un solo elemento en el arreglo
+    if (grupo -> tope == 1){
+        hay = (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [0]),fecha) == 0);
+    }
+    while (j <= i){
+        int mitad = (j+ i) / 2;
+        if (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]),fecha) == 0){
+            hay;
+            break;
+        }else
+            //Si la fecha ubicada en la mitad es mas grende que la fecha que nos proporciona la funcion, covierte el tope en mitad -1 porque mitad ya se comparo
+            if(compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]),fecha) > 0){
+                i = mitad - 1;
+        }else{
+            j = mitad + 1;
+        }
+
+    }
 
     /****** Fin de parte Parte 5.5 *****/ 
     return hay;
