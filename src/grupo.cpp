@@ -32,7 +32,7 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
             grupo -> grupo[i] = persona;
             grupo -> tope++;
         }else{
-            while (i< grupo -> tope){
+            while (i < grupo -> tope){
                 if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
                     i++;
                 }
@@ -84,7 +84,7 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 	/************ Parte 5.3 ************/
     /*Escriba el código a continuación */
     int j = 0;
-    while ((j< grupo -> tope ) && !esta){
+    while ((j< grupo -> tope -1 ) && !esta){
         esta = (cedula == cedulaTPersona(grupo -> grupo[j]));
         j++;
     }
