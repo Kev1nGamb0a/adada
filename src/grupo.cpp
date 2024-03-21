@@ -32,11 +32,8 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
             grupo -> grupo[i] = persona; 
             grupo -> tope++;
         }else{
-            while (i < grupo -> tope){
-                if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
-                    i++;
-                }
-            break;
+            while ((i < grupo -> tope) && (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) <= 0)){
+                i++;
             }          
             for (int j = grupo -> tope ; j>i ;j--){
                 grupo -> grupo [j] = grupo -> grupo[j-1];   
