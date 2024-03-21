@@ -29,7 +29,7 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
     int i = 0;
     if (grupo -> tope < MAX_PERSONAS){
         if (grupo -> tope == 0){
-            grupo -> grupo[i] = persona;
+            grupo -> grupo[i] = persona; 
             grupo -> tope++;
         }else{
             while (i < grupo -> tope){
@@ -37,7 +37,7 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
                     i++;
                 }
             }          
-            for (int j = grupo -> tope ; j>i ;j--){
+            for (int j = grupo -> tope ; j>=i ;j--){
                 grupo -> grupo [j] = grupo -> grupo[j-1];   
             }
             grupo -> grupo [i] = persona;
@@ -84,7 +84,7 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 	/************ Parte 5.3 ************/
     /*Escriba el código a continuación */
     int j = 0;
-    while ((j<= grupo -> tope -1 ) && !esta){
+    while ((j <= grupo -> tope -1 ) && !esta){
         esta = (cedula == cedulaTPersona(grupo -> grupo[j]));
         j++;
     }
