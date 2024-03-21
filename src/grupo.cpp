@@ -36,8 +36,9 @@ void agregarAGrupo(TGrupo& grupo, TPersona persona){
                 if (compararTFechas (fechaNacimientoTPersona(persona),fechaNacimientoTPersona(grupo->grupo[i])) >= 0){
                     i++;
                 }
+            break;
             }          
-            for (int j = grupo -> tope ; j>=i ;j--){
+            for (int j = grupo -> tope ; j>i ;j--){
                 grupo -> grupo [j] = grupo -> grupo[j-1];   
             }
             grupo -> grupo [i] = persona;
