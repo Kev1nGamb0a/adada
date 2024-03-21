@@ -84,7 +84,7 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 	/************ Parte 5.3 ************/
     /*Escriba el código a continuación */
     int j = 0;
-    while ((j< grupo -> tope -1 ) && !esta){
+    while ((j<= grupo -> tope -1 ) && !esta){
         esta = (cedula == cedulaTPersona(grupo -> grupo[j]));
         j++;
     }
@@ -118,19 +118,19 @@ bool hayPersonasFecha(TGrupo grupo, TFecha fecha){
     /*Escriba el código a continuación */
     //Variables auxiliares que me ayudaran a recorrer el arreglo
     int j = 0;
-    int i = grupo -> tope;
+    int i = grupo -> tope -1;
     //Contempla el caso de que exista un solo elemento en el arreglo
     if (grupo -> tope == 1){
-        hay = (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [0]),fecha) == 0);
+        hay = (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [0]), fecha) == 0);
     }
     while (j <= i){
         int mitad = (j+ i) / 2;
-        if (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]),fecha) == 0){
+        if (compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]), fecha) == 0){
             hay = true;
             break;
         }else
             //Si la fecha ubicada en la mitad es mas grende que la fecha que nos proporciona la funcion, covierte el tope en mitad -1 porque mitad ya se comparo
-            if(compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]),fecha) > 0){
+            if(compararTFechas(fechaNacimientoTPersona(grupo -> grupo [mitad]), fecha) > 0){
                 i = mitad - 1;
         }else{
             j = mitad + 1;
