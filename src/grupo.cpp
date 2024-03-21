@@ -84,7 +84,7 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 	/************ Parte 5.3 ************/
     /*Escriba el código a continuación */
     int j = 0;
-    while ((j<= grupo -> tope -1) && !esta){
+    while ((j< grupo -> tope ) && !esta){
         esta = (cedula == cedulaTPersona(grupo -> grupo[j]));
         j++;
     }
@@ -98,7 +98,7 @@ void removerDeGrupo(TGrupo &grupo, int cedula){
     /*Escriba el código a continuación */
     if (estaEnGrupo(grupo, cedula)){
         int j = 0;
-        while (j <= grupo -> tope-1){
+        while (j < grupo -> tope){
             if (cedula == cedulaTPersona(grupo -> grupo[j])){
                 liberarTPersona(grupo -> grupo[j]);
                 for (int i=j; i < grupo -> tope; i++){
